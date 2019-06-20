@@ -9,7 +9,7 @@ const saveJournalEntry = () => {
         //then checks if the text in concept and entry are valid characters
         if (checkCharValid(concept, entry)) {
             let journalObj = createJournalEntryObject(date, concept, entry, mood)
-            
+
             API.postJournalEntry(journalObj)
                 .then(e => API.getJournalEntries())
                 .then(entries => {
@@ -64,5 +64,14 @@ const filterMood = () => {
     } else {
         let filteredEntries = API.cachedJournalEntries.filter(entry => entry.mood === mood)
         renderJournalEntries(filteredEntries)
-    }       
+    }
+}
+
+const deleteEntry = () => {
+    let idNum = event.target.id.split("--")[1]
+    
+    API.deleteJournalEntry(idNum)
+        .then(e => API.getJournalEntries())
+        .then(renderJournalEntries)
+
 }

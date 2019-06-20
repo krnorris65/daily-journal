@@ -4,4 +4,8 @@ const renderJournalEntries = (entries) => {
     entries.forEach(entry => {
         entryEl.innerHTML += makeJournalEntryComponent(entry)
     })
+
+    document.querySelectorAll(".deleteBtn").forEach(button => {
+        button.addEventListener("click", deleteEntry)
+    })
 }
