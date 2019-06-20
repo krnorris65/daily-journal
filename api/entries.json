@@ -2,14 +2,14 @@
   "entries": [
     {
       "date": "2019-05-21",
-      "concept": "HTML",
+      "concept": "HTML!",
       "entry": "Today I learned the basics of HTML",
       "mood": "happy",
       "id": 1
     },
     {
       "date": "2019-05-22",
-      "concept": "CSS",
+      "concept": "CSS!!",
       "entry": "Today I practiced styling with CSS selectors and used Flexbox Froggy",
       "mood": "happy",
       "id": 2

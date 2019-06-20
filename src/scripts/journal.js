@@ -6,3 +6,4 @@ document.getElementsByName("mood").forEach(moodInput => {
     moodInput.addEventListener("click", filterMood)
 })
 
+document.getElementById("dontSave").addEventListener("click", resetValues)

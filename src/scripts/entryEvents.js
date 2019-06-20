@@ -3,19 +3,31 @@ const saveJournalEntry = () => {
     let concept = document.getElementById("journalConcept").value
     let entry = document.getElementById("journalEntry").value
     let mood = document.getElementById("journalMood").value
-
+    let journalId = document.getElementById("journalId").value
     //checks if fields are empty
     if (date !== "" && concept !== "" && entry !== "") {
         //then checks if the text in concept and entry are valid characters
         if (checkCharValid(concept, entry)) {
             let journalObj = createJournalEntryObject(date, concept, entry, mood)
 
-            API.postJournalEntry(journalObj)
-                .then(e => API.getJournalEntries())
-                .then(entries => {
-                    renderJournalEntries(entries)
-                    resetValues()
-                })
+            //if there is no journalId, then do a post
+            //if there is a journalId, then do a put
+            if (journalId === "") {
+                API.postJournalEntry(journalObj)
+                    .then(e => API.getJournalEntries())
+                    .then(entries => {
+                        renderJournalEntries(entries)
+                        resetValues()
+                    })
+            } else {
+                journalObj.id = parseInt(journalId)
+                API.putJournalEntry(journalObj)
+                    .then(e => API.getJournalEntries())
+                    .then(entries => {
+                        renderJournalEntries(entries)
+                        resetValues()
+                    })
+            }
 
         } else {
             alert("Invalid Character Found.")
@@ -29,6 +41,12 @@ const resetValues = () => {
     document.getElementById("journalEntry").value = ""
     document.getElementById("journalMood").value = "happy"
     document.getElementById("showAll").checked = true
+    
+    //part of changes made when edit button is pressed
+    document.getElementById("journalId").value = ""
+    document.getElementById("editHeader").hidden = true
+    document.getElementById("saveEntry").innerHTML = "Record Journal Entry"
+    document.getElementById("dontSave").hidden = true
 }
 
 const checkCharValid = (conceptText, entryText) => {
@@ -69,9 +87,40 @@ const filterMood = () => {
 
 const deleteEntry = () => {
     let idNum = event.target.id.split("--")[1]
-    
+
     API.deleteJournalEntry(idNum)
         .then(e => API.getJournalEntries())
         .then(renderJournalEntries)
+
+}
+
+const editEntry = () => {
+    window.scrollTo(0, 0)
+
+    let idNum = event.target.id.split("--")[1]
+    let journalId = document.getElementById("journalId")
+    let date = document.getElementById("journalDate")
+    let concept = document.getElementById("journalConcept")
+    let entry = document.getElementById("journalEntry")
+    let mood = document.getElementById("journalMood")
+
+    let saveBtn = document.getElementById("saveEntry")
+    let discardBtn = document.getElementById("dontSave")
+    let editHead = document.getElementById("editHeader")
+
+    API.getSingleEntry(idNum)
+        .then(oneEntry => {
+            discardBtn.hidden = false
+            editHead.hidden = false
+            journalId.value = oneEntry.id
+            date.value = oneEntry.date
+            concept.value = oneEntry.concept
+            entry.value = oneEntry.entry
+            mood.value = oneEntry.mood
+            saveBtn.innerHTML = "Update Entry"
+        })
+
+
+
 
 }

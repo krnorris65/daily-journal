@@ -9,7 +9,9 @@
 </head>
 <body>
     <h1>Daily Journal</h1>
+    <h2 id="editHeader" hidden>Edit Journal Entry:</h2>
     <form onsubmit="return false" id="journalForm">
+        <input id="journalId" type="hidden">
         <fieldset>
             <label for="journalDate">Date of entry</label>
             <input type="date" name="journalDate" id="journalDate" required>
@@ -32,6 +34,7 @@
         </fieldset>
     </form>
     <button type="submit" form="journalForm" id="saveEntry">Record Journal Entry</button>
+    <button id="dontSave" hidden>Discard Changes</button>
 
     <fieldset>
         <legend>
