@@ -11,12 +11,24 @@ const saveJournalEntry = () => {
             let journalObj = createJournalEntryObject(date, concept, entry, mood)
             
             API.postJournalEntry(journalObj)
-                .then(API.getJournalEntries)
-                .then(renderJournalEntries)
+                .then(e => API.getJournalEntries())
+                .then(entries => {
+                    renderJournalEntries(entries)
+                    resetValues()
+                })
+
         } else {
             alert("Invalid Character Found.")
         }
     }
+}
+
+const resetValues = () => {
+    document.getElementById("journalDate").value = ""
+    document.getElementById("journalConcept").value = ""
+    document.getElementById("journalEntry").value = ""
+    document.getElementById("journalMood").value = "happy"
+    document.getElementById("showAll").checked = true
 }
 
 const checkCharValid = (conceptText, entryText) => {
@@ -42,4 +54,15 @@ const createJournalEntryObject = (date, concept, entry, mood) => {
         entry: entry,
         mood: mood
     }
+}
+
+const filterMood = () => {
+    let mood = event.target.value
+
+    if (mood === "all") {
+        renderJournalEntries(API.cachedJournalEntries)
+    } else {
+        let filteredEntries = API.cachedJournalEntries.filter(entry => entry.mood === mood)
+        renderJournalEntries(filteredEntries)
+    }       
 }
