@@ -8,4 +8,7 @@ const renderJournalEntries = (entries) => {
     document.querySelectorAll(".deleteBtn").forEach(button => {
         button.addEventListener("click", deleteEntry)
     })
+    document.querySelectorAll(".editBtn").forEach(button => {
+        button.addEventListener("click", editEntry)
+    })
 }

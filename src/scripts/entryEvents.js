@@ -71,7 +71,32 @@ const deleteEntry = () => {
     let idNum = event.target.id.split("--")[1]
     
     API.deleteJournalEntry(idNum)
-        .then(e => API.getJournalEntries())
-        .then(renderJournalEntries)
+    .then(e => API.getJournalEntries())
+    .then(renderJournalEntries)
+    
+}
+
+const editEntry = () => {
+    let idNum = event.target.id.split("--")[1]
+    let journalId = document.getElementById("journalId")
+    let date = document.getElementById("journalDate")
+    let concept = document.getElementById("journalConcept")
+    let entry = document.getElementById("journalEntry")
+    let mood = document.getElementById("journalMood")
+
+    let saveBtn = document.getElementById("saveEntry")
+    let disregardBtn = document.getElementById("dontSave")
+
+    API.getSingleEntry(idNum)
+    .then(oneEntry => {
+        disregardBtn.hidden = false
+        journalId.value = oneEntry.id
+        date.value = oneEntry.date
+        concept.value = oneEntry.concept
+        entry.value = oneEntry.entry
+        mood.value = oneEntry.mood
+        saveBtn.innerHTML = "Update Entry"
+    })
+    
 
 }
