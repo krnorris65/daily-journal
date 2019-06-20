@@ -12,15 +12,15 @@
     <form onsubmit="return false" id="journalForm">
         <fieldset>
             <label for="journalDate">Date of entry</label>
-            <input type="date" name="journalDate" id="journalDate">
+            <input type="date" name="journalDate" id="journalDate" required>
         </fieldset>
         <fieldset>
             <label for="journalConcept">Concepts Covered</label>
-            <input type="text" name="journalConcept" id="journalConcept">
+            <input type="text" name="journalConcept" id="journalConcept" required>
         </fieldset>
         <fieldset>
             <label for="journalEntry">Journal Entry</label>
-            <textarea name="journalEntry" id="journalEntry"></textarea>
+            <textarea name="journalEntry" id="journalEntry" required></textarea>
         </fieldset>
         <fieldset>
             <label for="journalMood">Mood for the day</label>
@@ -31,7 +31,7 @@
             </select>
         </fieldset>
     </form>
-    <button type="submit" form="journalForm">Record Journal Entry</button>
+    <button type="submit" form="journalForm" id="saveEntry">Record Journal Entry</button>
     <article class="entryLog"></article>
 
 
