@@ -10,13 +10,10 @@ document.querySelector("#saveEntry").addEventListener("click", () => {
     if (date !== "" && concept !== "" && entry !== "") {
         //then checks if the text in concept and entry are valid characters
         if(checkCharValid(concept, entry)){
-            let journalObj = {
-                date: date,
-                concept: concept,
-                entry: entry,
-                mood: mood
-            }
+            let journalObj = createJournalEntryObject(date, concept, entry, mood)
             console.log(journalObj)
+        } else{
+            alert("Invalid Character Found.") 
         }
     }
 
@@ -35,5 +32,14 @@ const checkCharValid = (conceptText, entryText) => {
     } else {
         //else invalid
         return false
+    }
+}
+
+const createJournalEntryObject = (date, concept, entry, mood) => {
+    return {
+        date: date,
+        concept: concept,
+        entry: entry,
+        mood: mood
     }
 }
