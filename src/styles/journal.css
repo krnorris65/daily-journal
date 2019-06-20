@@ -1,5 +1,19 @@
 #journalForm fieldset {
     display: flex;
     flex-direction: column;
+    
+}
 
+#filterEntries {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#filterEntries fieldset{
+    flex-basis: 40%;
+}
+#searchTerm{
+    width: 100%
 }

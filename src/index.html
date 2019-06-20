@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Daily Journal</title>
     <link rel="stylesheet" href="styles/journal.css">
 </head>
+
 <body>
     <h1>Daily Journal</h1>
     <h2 id="editHeader" hidden>Edit Journal Entry:</h2>
@@ -35,24 +37,31 @@
     </form>
     <button type="submit" form="journalForm" id="saveEntry">Record Journal Entry</button>
     <button id="dontSave" hidden>Discard Changes</button>
+    <div id="filterEntries">
+        <fieldset>
+            <legend>
+                Filter Journal Entries by Mood
+            </legend>
 
-    <fieldset>
-        <legend>
-            Filter Journal Entries by Mood
-        </legend>
+            <input name="mood" value="happy" type="radio">
+            <label>Happy</label>
 
-        <input name="mood" value="happy" type="radio">
-        <label>Happy</label>
+            <input name="mood" value="ok" type="radio">
+            <label>Ok</label>
 
-        <input name="mood" value="ok" type="radio">
-        <label>Ok</label>
+            <input name="mood" value="sad" type="radio">
+            <label>Sad</label>
 
-        <input name="mood" value="sad" type="radio">
-        <label>Sad</label>
-
-        <input id="showAll" name="mood" value="all" type="radio" checked>
-        <label>All</label>
-    </fieldset>
+            <input id="showAll" name="mood" value="all" type="radio" checked>
+            <label>All</label>
+        </fieldset>
+        <fieldset>
+            <legend>
+                Search journal entries
+            </legend>
+            <input type="text" id="searchTerm" placeholder="Enter search term">
+        </fieldset>
+    </div>
     <article class="entryLog"></article>
 
 
@@ -62,4 +71,5 @@
     <script src="scripts/entryEvents.js"></script>
     <script src="scripts/journal.js"></script>
 </body>
+
 </html>
