@@ -14,3 +14,6 @@
 #filterEntries fieldset{
     flex-basis: 40%;
 }
+#searchTerm{
+    width: 100%
+}
