@@ -36,14 +36,17 @@ const saveJournalEntry = () => {
 }
 
 const resetValues = () => {
-    document.getElementById("journalId").value = ""
     document.getElementById("journalDate").value = ""
     document.getElementById("journalConcept").value = ""
     document.getElementById("journalEntry").value = ""
     document.getElementById("journalMood").value = "happy"
     document.getElementById("showAll").checked = true
-    document.getElementById("dontSave").hidden = true
+    
+    //part of changes made when edit button is pressed
+    document.getElementById("journalId").value = ""
+    document.getElementById("editHeader").hidden = true
     document.getElementById("saveEntry").innerHTML = "Record Journal Entry"
+    document.getElementById("dontSave").hidden = true
 }
 
 const checkCharValid = (conceptText, entryText) => {
@@ -92,6 +95,8 @@ const deleteEntry = () => {
 }
 
 const editEntry = () => {
+    window.scrollTo(0, 0)
+
     let idNum = event.target.id.split("--")[1]
     let journalId = document.getElementById("journalId")
     let date = document.getElementById("journalDate")
@@ -100,11 +105,13 @@ const editEntry = () => {
     let mood = document.getElementById("journalMood")
 
     let saveBtn = document.getElementById("saveEntry")
-    let disregardBtn = document.getElementById("dontSave")
+    let discardBtn = document.getElementById("dontSave")
+    let editHead = document.getElementById("editHeader")
 
     API.getSingleEntry(idNum)
         .then(oneEntry => {
-            disregardBtn.hidden = false
+            discardBtn.hidden = false
+            editHead.hidden = false
             journalId.value = oneEntry.id
             date.value = oneEntry.date
             concept.value = oneEntry.concept
@@ -112,6 +119,8 @@ const editEntry = () => {
             mood.value = oneEntry.mood
             saveBtn.innerHTML = "Update Entry"
         })
+
+
 
 
 }
