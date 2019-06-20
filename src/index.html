@@ -32,12 +32,31 @@
         </fieldset>
     </form>
     <button type="submit" form="journalForm" id="saveEntry">Record Journal Entry</button>
+
+    <fieldset>
+        <legend>
+            Filter Journal Entries by Mood
+        </legend>
+
+        <input name="mood" value="happy" type="radio">
+        <label>Happy</label>
+
+        <input name="mood" value="ok" type="radio">
+        <label>Ok</label>
+
+        <input name="mood" value="sad" type="radio">
+        <label>Sad</label>
+
+        <input id="showAll" name="mood" value="all" type="radio" checked>
+        <label>All</label>
+    </fieldset>
     <article class="entryLog"></article>
 
 
     <script src="scripts/data.js"></script>
     <script src="scripts/entryComponent.js"></script>
     <script src="scripts/entriesDOM.js"></script>
+    <script src="scripts/entryEvents.js"></script>
     <script src="scripts/journal.js"></script>
 </body>
 </html>
