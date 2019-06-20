@@ -11,8 +11,6 @@ document.getElementById("dontSave").addEventListener("click", resetValues)
 document.getElementById("searchTerm").addEventListener("keypress", () => {
     if (event.keyCode === 13) {
         let searchedTerm = document.getElementById("searchTerm").value.toLowerCase()
-        console.log(searchedTerm)
-
         let searchResults = []
 
         API.cachedJournalEntries.forEach(entry => {
