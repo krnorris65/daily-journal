@@ -9,13 +9,14 @@ document.querySelector("#saveEntry").addEventListener("click", () => {
     //checks if fields are empty
     if (date !== "" && concept !== "" && entry !== "") {
         //then checks if the text in concept and entry are valid characters
-        if(checkCharValid(concept, entry)){
+        if (checkCharValid(concept, entry)) {
             let journalObj = createJournalEntryObject(date, concept, entry, mood)
+            
             API.postJournalEntry(journalObj)
-            .then(API.getJournalEntries)
-            .then(renderJournalEntries)
-        } else{
-            alert("Invalid Character Found.") 
+                .then(API.getJournalEntries)
+                .then(renderJournalEntries)
+        } else {
+            alert("Invalid Character Found.")
         }
     }
 
