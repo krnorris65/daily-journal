@@ -11,7 +11,9 @@ document.querySelector("#saveEntry").addEventListener("click", () => {
         //then checks if the text in concept and entry are valid characters
         if(checkCharValid(concept, entry)){
             let journalObj = createJournalEntryObject(date, concept, entry, mood)
-            console.log(journalObj)
+            API.postJournalEntry(journalObj)
+            .then(API.getJournalEntries)
+            .then(renderJournalEntries)
         } else{
             alert("Invalid Character Found.") 
         }
