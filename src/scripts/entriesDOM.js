@@ -1,6 +1,7 @@
 import { makeJournalEntryComponent } from "./entryComponent.js"
 import { eventHandler} from "./entryEvents.js"
 import {helperFunction} from "./helper.js"
+import { API} from "./data.js"
 
 const domManager = {
 
@@ -28,6 +29,15 @@ const domManager = {
         document.getElementById("dontSave").addEventListener("click", helperFunction.resetValues)
 
         document.getElementById("searchTerm").addEventListener("keypress", eventHandler.filterTerm)
+    },
+    renderMoodOptions(){
+        
+        API.getMoods()
+        .then(moods => {
+            moods.forEach(mood => {
+                document.getElementById("journalMood").innerHTML += `<option value="${mood.id}">${mood.label}</option>`
+            })
+        })
     }
 }
 export { domManager }

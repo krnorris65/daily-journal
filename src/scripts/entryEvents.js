@@ -45,7 +45,7 @@ const eventHandler = {
         if (mood === "all") {
             domManager.renderJournalEntries(API.cachedJournalEntries)
         } else {
-            let filteredEntries = API.cachedJournalEntries.filter(entry => entry.mood === mood)
+            let filteredEntries = API.cachedJournalEntries.filter(entry => entry.mood.label === mood)
             domManager.renderJournalEntries(filteredEntries)
         }
     },
