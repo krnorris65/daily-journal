@@ -10,3 +10,5 @@ const makeJournalEntryComponent = (journalEntry) => {
     </div>
     `
 }
+
+export {makeJournalEntryComponent}

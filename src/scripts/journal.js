@@ -1,31 +1,8 @@
-API.getJournalEntries().then(renderJournalEntries)
+import {domManager} from "./entriesDOM.js"
+import {API} from "./data.js"
+// import { eventHandler} from "./entryEvents.js"
 
-document.querySelector("#saveEntry").addEventListener("click", saveJournalEntry)
 
-document.getElementsByName("mood").forEach(moodInput => {
-    moodInput.addEventListener("click", filterMood)
-})
+domManager.addFormEventListeners()
 
-document.getElementById("dontSave").addEventListener("click", resetValues)
-
-document.getElementById("searchTerm").addEventListener("keypress", () => {
-    if (event.keyCode === 13) {
-        let searchedTerm = document.getElementById("searchTerm").value.toLowerCase()
-        let searchResults = []
-
-        API.cachedJournalEntries.forEach(entry => {
-
-            for (const value of Object.values(entry)) {
-                if (typeof value === "string") {
-                    if (value.toLowerCase().includes(searchedTerm)) {
-                        if (!searchResults.includes(entry)) {
-                            searchResults.push(entry)
-                        }
-                    }
-                }
-            }
-        })
-        renderJournalEntries(searchResults)
-
-    }
-})
+API.getJournalEntries().then(domManager.renderJournalEntries)
