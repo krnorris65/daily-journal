@@ -39,3 +39,5 @@ const API = {
             .then(data => data.json())
     }
 }
+
+export {API}

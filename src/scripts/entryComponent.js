@@ -11,4 +11,4 @@ const makeJournalEntryComponent = (journalEntry) => {
     `
 }
 
-// export {makeJournalEntryComponent}
+export {makeJournalEntryComponent}
