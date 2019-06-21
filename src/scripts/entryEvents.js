@@ -124,3 +124,26 @@ const editEntry = () => {
 
 
 }
+
+const filterTerm = () => {
+    if (event.keyCode === 13) {
+        let searchedTerm = document.getElementById("searchTerm").value.toLowerCase()
+        let searchResults = []
+
+        API.cachedJournalEntries.forEach(entry => {
+            //need to create a new object wihtout the id because you can't do a .includes() or .toLowerCase() on a number
+            //convert values to lower case so that in same format as searched term
+            let journalObject = createJournalEntryObject(entry.date.toLowerCase(), entry.concept.toLowerCase(), entry.entry.toLowerCase(), entry.mood.toLowerCase())
+
+            for (const value of Object.values(journalObject)) {
+                if (value.includes(searchedTerm) && !searchResults.includes(entry)) {
+                    //check to see if the entry is already in the searchResults array
+                    //if not added it
+                    searchResults.push(entry)
+                }
+            }
+        })
+        renderJournalEntries(searchResults)
+
+    }
+}

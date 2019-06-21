@@ -1,3 +1,5 @@
+// import {makeJournalEntryComponent} from "./entryComponent.js"
+
 const renderJournalEntries = (entries) => {
     let entryEl = document.querySelector(".entryLog")
     entryEl.innerHTML = ""
@@ -12,3 +14,17 @@ const renderJournalEntries = (entries) => {
         button.addEventListener("click", editEntry)
     })
 }
+
+const addFormEventListeners = () => {
+    document.querySelector("#saveEntry").addEventListener("click", saveJournalEntry)
+
+    document.getElementsByName("mood").forEach(moodInput => {
+        moodInput.addEventListener("click", filterMood)
+    })
+
+    document.getElementById("dontSave").addEventListener("click", resetValues)
+
+    document.getElementById("searchTerm").addEventListener("keypress", filterTerm)
+}
+
+// export {renderJournalEntries}
