@@ -1,7 +1,7 @@
 const API = {
     cachedJournalEntries: [],
     getJournalEntries() {
-        return fetch("http://localhost:3000/entries")
+        return fetch("http://localhost:3000/entries?_expand=mood")
             .then(response => response.json())
             .then(entries => this.cachedJournalEntries = entries)
     },
@@ -37,6 +37,11 @@ const API = {
             body: JSON.stringify(updatedEntry)
         })
             .then(data => data.json())
+    },
+    getMoods(){
+        return fetch("http://localhost:3000/moods")
+        .then(response => response.json())
+        .then(entries => this.cachedJournalEntries = entries)
     }
 }
 

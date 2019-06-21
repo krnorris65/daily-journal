@@ -27,12 +27,12 @@ const helperFunction = {
             return false
         }
     },
-    createJournalEntryObject(date, concept, entry, mood) {
+    createJournalEntryObject(date, concept, entry, moodId) {
         return {
             date: date,
             concept: concept,
             entry: entry,
-            mood: mood
+            moodId: parseInt(moodId)
         }
     }
 }
