@@ -12,7 +12,7 @@ const helperFunction = {
         document.getElementById("saveEntry").innerHTML = "Record Journal Entry"
         document.getElementById("dontSave").hidden = true
     },
-    checkCharValid: (conceptText, entryText) => {
+    checkCharValid(conceptText, entryText) {
         // ^! means if the characters don't match the following
         let allowedChar = /[^!A-Z0-9a-z(){}:;. ]/g;
 
@@ -27,7 +27,7 @@ const helperFunction = {
             return false
         }
     },
-    createJournalEntryObject: (date, concept, entry, mood) => {
+    createJournalEntryObject(date, concept, entry, mood) {
         return {
             date: date,
             concept: concept,

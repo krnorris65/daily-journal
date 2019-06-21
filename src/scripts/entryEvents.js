@@ -3,7 +3,6 @@ import { helperFunction } from "./helper.js"
 import { domManager } from "./entriesDOM.js"
 
 const eventHandler = {
-
     saveJournalEntry() {
         let date = document.getElementById("journalDate").value
         let concept = document.getElementById("journalConcept").value

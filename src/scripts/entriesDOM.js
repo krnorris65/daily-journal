@@ -4,7 +4,7 @@ import {helperFunction} from "./helper.js"
 
 const domManager = {
 
-    renderJournalEntries: (entries) => {
+    renderJournalEntries(entries) {
         let entryEl = document.querySelector(".entryLog")
         entryEl.innerHTML = ""
         entries.forEach(entry => {
@@ -18,7 +18,7 @@ const domManager = {
             button.addEventListener("click", eventHandler.editEntry)
         })
     },
-    addFormEventListeners: () => {
+    addFormEventListeners () {
         document.querySelector("#saveEntry").addEventListener("click", eventHandler.saveJournalEntry)
 
         document.getElementsByName("mood").forEach(moodInput => {
