@@ -6,7 +6,7 @@ const API = {
             .then(entries => this.cachedJournalEntries = entries)
     },
     getSingleEntry(id) {
-        return fetch(`http://localhost:3000/entries/${id}`)
+        return fetch(`http://localhost:3000/entries/${id}?_expand=mood`)
             .then(response => response.json())
     },
     postJournalEntry(newJournalEntry) {
