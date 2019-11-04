@@ -79,7 +79,7 @@ const eventHandler = {
                 date.value = oneEntry.date
                 concept.value = oneEntry.concept
                 entry.value = oneEntry.entry
-                mood.value = oneEntry.mood
+                mood.value = oneEntry.moodId
                 saveBtn.innerHTML = "Update Entry"
             })
     },
